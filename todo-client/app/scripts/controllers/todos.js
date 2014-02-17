@@ -1,23 +1,35 @@
 'use strict';
 
 angular.module('todosApp')
-  .controller('TodosCtrl', function ($scope, TodoService) {
+  .controller('TodosCtrl', function ($scope, $timeout, TodoService) {
 
-    TodoService.all().then(function(data) {
-        console.log(data);
-    });
-    
     $scope.todos = [];
     $scope.newTodo = '';
 
+    $scope.getTodos = function() {
+      TodoService.all().then(function(data) {
+        $scope.todos = data;
+      });
+    };
+
     $scope.saveTodo = function() {
-      $scope.todos.push($scope.newTodo);
-      $scope.newTodo = "";
+      TodoService.save($scope.newTodo).then(function(response) {
+        $scope.todoSaved = true;
+        console.log(response);
+        $scope.newTodo = "";
+        $scope.getTodos();
+      });
+
     };
 
     $scope.deleteTodo = function(todo) {
-      console.log('deleting ' + todo);
-      $scope.todos.splice( $scope.todos.indexOf(todo), 1 );
+      console.log('deleting todo ' + todo.title);
+      $timeout(function() {
+        TodoService.del(todo.id).then(function(response) {
+          $scope.getTodos();
+        });
+      }, 1000);
     };
 
+    $scope.getTodos();
   });

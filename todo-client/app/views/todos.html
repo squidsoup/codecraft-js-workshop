@@ -1,33 +1,30 @@
 <div class="container">
 
-  <h3>My Todos</h3>
-  <table class="todos">
+  <h3>Todos</h3>
+  <table>
     <tr>
       <th>Title</th>
-
+      <td>Remove</td>
     </tr>
-    <tr ng-show="!todos.length">
-      <td>No todos, add one!</td>
-    </tr>
-    <tr ng-show="todos.length" ng-repeat="todo in todos">
+    <tr ng-repeat="todo in todos">
       <td>{{todo.title}}</td>
-      <td><a remove-with-fade="1000" ng-click="deleteTodo(todo)" title="delete">[X]</a></td>
+      <td><a ng-click="deleteTodo(todo)" title="delete">[X]</a></td>
     </tr>
   </table>
   <hr/>
 
 
   <form id="todo-new" name="form" ng-submit="saveTodo()" class="form-horizontal">
+    <legend>Add a Todo item</legend>
     <div class="control-group">
       <label class="control-label" for="inputTitle"></label>
       <div class="controls">
         <input type="text" name="name" ng-model="newTodo.title" placeholder="Title" required />
-        <span class="help-inline"
-        ng-show="form.name.$error.required">Add a todo</span>
+        <span class="help-inline" ng-show="form.name.$error.required">enter a todo title</span>
         <span class="help-inline" ng-hide="form.name.$error.required"><i class="icon-ok"></i></span>
       </div>
     </div>
-    <div class="control-group save-todo">
+    <div class="control-group">
       <div class="controls">
         <button ng-disabled="form.$invalid" ng-click="clearInput()" type="submit" class="btn btn-primary">Save</button>
       </div>
