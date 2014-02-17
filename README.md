@@ -9,6 +9,12 @@ todos.
 We'll learn a bit about angular factories, $http and time allowing
 will create a directive to provide some simple animations in our UI.
 
+## Getting Started
+
+To pickup where we left off at the last Codecraft, run the following:
+
+```git checkout tags/simple-todo```
+
 ## Getting Lost
 
 This repository has been tagged at significant commit points. If you
