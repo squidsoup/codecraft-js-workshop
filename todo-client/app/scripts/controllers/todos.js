@@ -1,8 +1,12 @@
 'use strict';
 
 angular.module('todosApp')
-  .controller('TodosCtrl', function ($scope) {
+  .controller('TodosCtrl', function ($scope, TodoService) {
 
+    TodoService.all().then(function(data) {
+        console.log(data);
+    });
+    
     $scope.todos = [];
     $scope.newTodo = '';
 
