@@ -21,3 +21,8 @@ To list tags run:
 and to checkout a tag run:
 
 ```git checkout tags/<tag-name>```
+
+## Testing our Sails service
+We can test confirm that our API is serving our todo model using:
+
+```curl http://localhost:1337/todo```
